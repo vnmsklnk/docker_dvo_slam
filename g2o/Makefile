@@ -10,6 +10,7 @@ GIT_URL=git://github.com/RainerKuemmerle/g2o.git
 include $(shell rospack find mk)/git_checkout.mk
 
 sophus: download
+	cd g2o_src && git checkout f5950e && cd .. && \
 	mkdir -p build && cd build && \
 	cmake -DCMAKE_INSTALL_PREFIX=`pwd`/..  ../$(GIT_DIR) && \
   make install
