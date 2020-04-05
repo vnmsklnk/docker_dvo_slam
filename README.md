@@ -24,32 +24,50 @@ These packages provide an implementation of the rigid body motion estimation of 
     
     ROS package wrapper for Hauke Strasdat's Sophus library, see https://github.com/strasdat/Sophus.
     
-
-## Installation
-
-Checkout the branch for your ROS version into a folder in your `ROS_PACKAGE_PATH` and build the packages with `rosmake`.
-
- *  ROS Fuerte:
-    
-    ```bash
-    git clone -b fuerte git://github.com/tum-vision/dvo_slam.git
-    rosmake dvo_core dvo_ros dvo_slam dvo_benchmark
-    ```
-
 ## Usage
 
-Estimating the camera trajectory from an RGB-D image stream:
+You can use my docker image
+```bash
+docker pull optsolution/dvo_slam
+```
+---
+
+You need mount your data to docker container, you can download TUM data from [here](https://vision.in.tum.de/data/datasets/rgbd-dataset/download)
+
+Before the next step, you need get the `assoc.txt` file by run:
+```bash
+python2 associate.py rgb.txt depth.txt >> assoc.txt
+```
+Then, you can run
+```bash
+docker run -i -t -p 5900:5900 -v [data_path]:[docker_data_path] optsolution/dvo_slam
+```
+e.g.
+```bash
+docker run -i -t -p 5900:5900 -v /home/cwang/data/TUM/rgbd_dataset_freiburg1_360:/root/dataset optsolution/dvo_slam
+```
+*option*: input `:5900` in vnc viewer to connect the desktop
+
+---
+
+you can run in the container:
+```bash
+cd [docker_data_path]
+roslaunch dvo_benchmark benchmark.launch
+```
+e.g.
+```bash
+cd /root/dataset/
+roslaunch dvo_benchmark benchmark.launch
+```
+Then the camera trajectory will be estimated from an RGB-D image stream.   
+
+After all, you will find the result in `/root/fuerte_workspace/dvo_slam/dvo_benchmark/output`
 
 *TODO*
 
-For visualization:
+ - Fix visualization
 
- *  Start RVIZ
- *  Set the *Target Frame* to `/world`
- *  Add an *Interactive Marker* display and set its *Update Topic* to `/dvo_vis/update`
- *  Add a *PointCloud2* display and set its *Topic* to `/dvo_vis/cloud`
-
-The red camera shows the current camera position. The blue camera displays the initial camera position.
 
 ## Publications
 
