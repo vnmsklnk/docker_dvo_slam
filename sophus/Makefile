@@ -10,7 +10,7 @@ GIT_URL=git://github.com/strasdat/Sophus.git
 include $(shell rospack find mk)/git_checkout.mk
 
 sophus: download
-	cd sophus_src && git checkout a621ff && cd .. && \
+	cd sophus_src && git checkout 760d2f && cd .. && \
 	mkdir -p build && cd build && \
 	cmake -DCMAKE_INSTALL_PREFIX=`pwd`/..  ../$(GIT_DIR) && \
   make install
