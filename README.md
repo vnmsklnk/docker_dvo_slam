@@ -28,7 +28,7 @@ These packages provide an implementation of the rigid body motion estimation of 
 
 You can use my docker image
 ```bash
-docker pull optsolution/dvo_slam
+docker pull paopaorobot/dvo_slam
 ```
 ---
 
@@ -40,11 +40,11 @@ python2 associate.py rgb.txt depth.txt >> assoc.txt
 ```
 Then, you can run
 ```bash
-docker run -i -t -p 5900:5900 -v [data_path]:[docker_data_path] optsolution/dvo_slam
+docker run -i -t -p 5900:5900 -v [data_path]:[docker_data_path] paopaorobot/dvo_slam
 ```
 e.g.
 ```bash
-docker run -i -t -p 5900:5900 -v /home/cwang/data/TUM/rgbd_dataset_freiburg1_360:/root/dataset optsolution/dvo_slam
+docker run -i -t -p 5900:5900 -v /home/cwang/data/TUM/rgbd_dataset_freiburg1_360:/root/dataset paopaorobot/dvo_slam
 ```
 *option*: input `:5900` in vnc viewer to connect the desktop
 
