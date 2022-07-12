@@ -381,7 +381,6 @@ void BenchmarkNode::run()
   // TODO: load from file
   //dvo::core::IntrinsicMatrix intrinsics = dvo::core::IntrinsicMatrix::create(525.0f, 525.0f, 320.0f, 240.0f);
   //fr1
-  dvo::core::IntrinsicMatrix intrinsics = dvo::core::IntrinsicMatrix::create(517.3, 516.5, 318.6, 255.3);
 
   //fr2
   //dvo::core::IntrinsicMatrix intrinsics = dvo::core::IntrinsicMatrix::create(520.9f, 521.0f, 325.1f, 249.7f);
@@ -389,7 +388,16 @@ void BenchmarkNode::run()
   //fr3
   //dvo::core::IntrinsicMatrix intrinsics = dvo::core::IntrinsicMatrix::create(535.4f, 539.2f, 320.1f, 247.6f);
 
-  dvo::core::RgbdCameraPyramid camera(640, 480, intrinsics);
+  int width, height;
+  double fx, fy, cx, cy;
+  if (!(nh_private_.getParam("width", width) && nh_private_.getParam("height", height) &&
+      nh_private_.getParam("fx", fx) && nh_private_.getParam("fy", fy) &&
+      nh_private_.getParam("cx", cx) && nh_private_.getParam("cy", cy))) {        
+    std::cerr << "Camera parameters are missed!" << std::endl;
+    return;
+  }
+  dvo::core::IntrinsicMatrix intrinsics = dvo::core::IntrinsicMatrix::create(fx, fy, cx, cy);
+  dvo::core::RgbdCameraPyramid camera(width, height, intrinsics);  
 
   // setup tracker configuration
   dvo_ros::CameraDenseTrackerConfig dynreconfg_cfg = dvo_ros::CameraDenseTrackerConfig::__getDefault__();
