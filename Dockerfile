@@ -2,7 +2,10 @@ FROM paopaorobot/ros-vnc:fuerte
 
 MAINTAINER Chen Wang<mr_cwang@foxmail.com>
 
-RUN apt-get update \
+RUN sed -i 's/archive.ubuntu.com/old-releases.ubuntu.com/g' /etc/apt/sources.list
+RUN sed -i 's/security.ubuntu.com/old-releases.ubuntu.com/g' /etc/apt/sources.list
+
+RUN apt-get -y update \
 	&& apt-get install -y libsuitesparse-dev \
 	&& apt-get autoclean \
 	&& apt-get autoremove \
