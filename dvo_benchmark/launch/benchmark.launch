@@ -28,12 +28,12 @@
     <param type="bool" name="estimate_trajectory" value="true" />
     <param type="string" name="trajectory_file" value="$(arg trajectory_file)" />
 
-    <param type="int" name="width" value="640">
-    <param type="int" name="height" value="480">
-    <param type="double" name="fx" value="517.3">
-    <param type="double" name="fy" value="516.5">
-    <param type="double" name="cx" value="318.6">
-    <param type="double" name="cy" value="255.3">
+    <param type="int" name="width" value="640" />
+    <param type="int" name="height" value="480" />
+    <param type="double" name="fx" value="517.3" />
+    <param type="double" name="fy" value="516.5" />
+    <param type="double" name="cx" value="318.6" />
+    <param type="double" name="cy" value="255.3" />
 
     <param type="bool" name="show_estimate" value="true" />
     <param type="bool" name="show_groundtruth" value="false" />
